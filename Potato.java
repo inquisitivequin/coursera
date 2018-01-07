@@ -59,7 +59,7 @@ public class Potato {
 
 	public static String last(String stOne, String stTwo) {
 		if(stTwo.contains(stOne)) {
-			return stTwo.substring(stTwo.indexOf(stOne), stTwo.length()+stOne.length());
+			return stTwo.substring(stTwo.indexOf(stOne)+stOne.length(), stTwo.length());
 		} else {
 			return stTwo;
 		}
@@ -67,7 +67,14 @@ public class Potato {
 
 	public static void testTwoOcs() {
 		System.out.println(twoOccs("atg", "ctgtatta"));
-		System.out.println(last("an", "banana"));
+		System.out.println(last("zoo", "forest"));
+	}
+
+	public static void ebs() {
+		URLResource ur = new URLResource("http://www.dukelearntoprogram.com/course2/data/manylinks.html");
+		for (String s : ur.lines()) {
+			System.out.println(s);
+		}
 	}
 
     public static void main(String[] args) {
