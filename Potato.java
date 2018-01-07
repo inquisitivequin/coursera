@@ -1,8 +1,10 @@
+import edu.duke.*;
+
 public class Potato {
 
 	public static String findSimpGene(String dna,
-																		String startCod,
-																		String stopCod) {
+									  String startCod,
+									  String stopCod) {
 
 		String result = "";
 
@@ -33,20 +35,20 @@ public class Potato {
 	public static void testSimpGene() {
 		String sc = "ATG";
 		String stc = "TAA";
-		String dna1 = "atgtaa";
+		String dna1 = "AAATGCCCTAACTAGATTAAGAAACC";
 		System.out.println(findSimpGene(dna1, sc, stc));
 
-		String dna2 = "ATGGTACCCTTTGATTAG";
-		System.out.println(findSimpGene(dna2, sc, stc));
+		// String dna2 = "ATGGTACCCTTTGATTAG";
+		// System.out.println(findSimpGene(dna2, sc, stc));
 
-		String dna3 = "GTACCCTTTGATTAGTAA";
-		System.out.println(findSimpGene(dna3, sc, stc));
+		// String dna3 = "GTACCCTTTGATTAGTAA";
+		// System.out.println(findSimpGene(dna3, sc, stc));
 
-		String dna4 = "ATGGTACCCTTTTAATAG";
-		System.out.println(findSimpGene(dna4, sc, stc));		
+		// String dna4 = "ATGGTACCCTTTTAATAG";
+		// System.out.println(findSimpGene(dna4, sc, stc));		
 
-		String dna5 = "ATGGTACCCTTTGATAATAG";
-		System.out.println(findSimpGene(dna5, sc, stc));
+		// String dna5 = "ATGGTACCCTTTGATAATAG";
+		// System.out.println(findSimpGene(dna5, sc, stc));
 	}
 
 	public static boolean twoOccs(String stOne,String stTwo) {
@@ -72,13 +74,15 @@ public class Potato {
 
 	public static void ebs() {
 		URLResource ur = new URLResource("http://www.dukelearntoprogram.com/course2/data/manylinks.html");
-		for (String s : ur.lines()) {
-			System.out.println(s);
+		for (String s : ur.words()) {
+			if(s.contains("youtube.com")) {
+				System.out.println(s.substring(s.indexOf('"')+1,s.lastIndexOf('"')));
+			}
 		}
 	}
 
     public static void main(String[] args) {
-
+    		ebs();
     		testSimpGene();
     		testTwoOcs();
     }

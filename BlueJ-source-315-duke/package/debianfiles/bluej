@@ -1,0 +1,31 @@
+#!/bin/sh
+
+unset JAVAPATH
+
+FOUND="false"
+for VMNAME in java-8-oracle jdk-8-oracle java-8-openjdk java-7-oracle jdk-7-oracle java-7-sun java-7-openjdk java-6-oracle java-6-sun java-6-openjdk ; do
+    for JDKCANDIDATE in /usr/lib/jvm/"$VMNAME"* ; do
+        if [ -e "$JDKCANDIDATE"/lib/tools.jar ]; then
+	        JAVAPATH="$JDKCANDIDATE"
+                FOUND="true"
+	        break
+        fi
+    done
+    if [ x"$FOUND" = x"true" ]; then
+       break;
+    fi
+done
+
+if [ x"$JAVAPATH" = x"" ]; then
+	echo "A suitable JDK couldn't be located. You may need to edit the"
+	echo "/usr/bin/bluej launch script."
+	exit 1
+fi
+	
+#SPECIAL CASE for the Raspberry Pi
+if grep -q "BCM2708" /proc/cpuinfo; then
+    export J2D_PIXMAPS=shared
+fi
+
+CP="/usr/share/bluej/bluej.jar:$JAVAPATH/lib/tools.jar"
+"$JAVAPATH/bin/java" -Dawt.useSystemAAFontSettings=on -cp "$CP" bluej.Boot  "$@"
