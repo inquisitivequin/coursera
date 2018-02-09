@@ -1,10 +1,7 @@
 import edu.duke.*;
 
 public class Tea {
-/*
-A. Find a gene in a strand of DNA where the stop codon could be any of the three stop codons “TAA”, “TAG”, or “TGA”.
 
-B. Find all the genes (where the stop codon could be any of the three stop codons) in a strand of DNA. */
 
 
 public static Integer findStopCodon(String dna, 
@@ -76,35 +73,27 @@ public static void printAllGenes(String dna) {
 
 }
 
-public static Integer howMany(String fnd, String here) {
-		int total = 0;
-		int currInd = here.indexOf(fnd);
-	while(currInd != -1) {
-		if(currInd != -1) {
-			return total = total + 1;
-		} else {
-			currInd = here.indexOf(fnd, currInd + 1);
+public static Integer howMany(String strngA, String strngB) {
+	strngA.toLowerCase();
+	strngB.toLowerCase();
+	int count = 0;
+	int curInd = 0;
+
+	if(strngA.length() == 0 || strngB.length() == 0) {
+		return 0;
+	} else {
+		while(!(strngB.indexOf(strngA, curInd) == -1)) {
+			count++;
+			curInd = strngB.indexOf(strngA, curInd) + strngA.length();
 		}
 	}
-	return total;
+	return count;
 }
 
-/*
-2. Write the method named howMany that has two String parameters named stringa
-and stringb. This method returns an integer indicating how many times stringa
-appears in stringb, where each occurrence of stringa must not overlap with
-another occurrence of it. For example, the call howMany(“GAA”,
-“ATGAACGAATTGAATC”) returns 3 as GAA occurs 3 times. The call howMany(“AA”,
-“ATAAAA”) returns 2. Note that the AA’s found cannot overlap.
 
-3.Write the void method testHowMany has no parameters. Add code in here to
-call howMany with several examples and print the results. Think carefully
-about what types of examples would be good to test to make sure your method
-works correctly.
-*/
 
 	public static void main (String[] args) {
-			testDna();
+			// testDna();
 			//testFindGene();
 			//printAllGenes("asdasdatgasdasdasdasdtaaatgaggaggtagatatatgaggaggtga");
 			System.out.println(howMany("gaa","atgaacgaattgaatc"));
